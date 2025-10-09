@@ -4,5 +4,4 @@ export type TProject = {
   frontendrepo: string;
   backendrepo: string;
   image: string;
-  descriptions: string;
 };

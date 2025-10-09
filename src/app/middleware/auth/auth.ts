@@ -35,11 +35,13 @@ const auth = (...reqRoles: string[]) => {
     // next();
 
     try {
+      console.log("Start try----------1");
       const decoded = jwt.verify(
         token,
         config.jwt_access_secreet as string
       ) as JwtPayload;
 
+      console.log("Start try----------2");
       console.log("decode token in auth: ", decoded);
       if (decoded) {
         req.user = decoded as JwtPayload;

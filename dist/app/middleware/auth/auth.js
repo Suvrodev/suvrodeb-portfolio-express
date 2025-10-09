@@ -42,7 +42,9 @@ const auth = (...reqRoles) => {
         // }
         // next();
         try {
+            console.log("Start try----------1");
             const decoded = jsonwebtoken_1.default.verify(token, config_1.default.jwt_access_secreet);
+            console.log("Start try----------2");
             console.log("decode token in auth: ", decoded);
             if (decoded) {
                 req.user = decoded;

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { StudentModel } from "../students/student.model";
 import AppError from "../../Errors/AppError";
 import { TUser } from "./user.interface";
 import { UserModel } from "./user.model";
@@ -31,14 +30,7 @@ const getSingleUserFromDB = async (email: string) => {
 const deleteUserFromDB = async (email: string) => {
   const existsRes = await checkNotExists(email);
 
-  const res = await UserModel.findOneAndUpdate(
-    { email: email },
-    { isDeleted: true },
-    {
-      new: true,
-      runValidators: true, //Model er role use korbe
-    }
-  );
+  const res = await UserModel.findOneAndDelete({ email: email });
 };
 const updateUserFromDB = async (email: string, userData: Partial<TUser>) => {
   const deleteOrNotExistsRes = await NotExistsOrDeleted(email);

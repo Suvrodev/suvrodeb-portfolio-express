@@ -21,6 +21,18 @@ const loginUser = async (payload: TLoginUser) => {
   //Check User deleted or not
   const userIsDeleted = await checkDeleted(payload.email);
 
+  //Check User blocked or not
+  const userIsBlocked = isUserExists?.isBlocked;
+  if (userIsBlocked) {
+    throw new AppError(403, "User is Blocked");
+  }
+
+  ///USer admin or not
+  const userIsAdmin = isUserExists?.role;
+  if (userIsAdmin !== "admin") {
+    throw new AppError(403, "Only Admin accessable");
+  }
+
   //Check Password is right or wrong
   // const isPasswordMatched = await bcrypt.compare(
   //   payload?.password,

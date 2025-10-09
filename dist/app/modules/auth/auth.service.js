@@ -29,6 +29,16 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const isUserExists = yield (0, checkNotExists_1.checkNotExists)(payload.email);
     //Check User deleted or not
     const userIsDeleted = yield (0, checkDeleted_1.checkDeleted)(payload.email);
+    //Check User blocked or not
+    const userIsBlocked = isUserExists === null || isUserExists === void 0 ? void 0 : isUserExists.isBlocked;
+    if (userIsBlocked) {
+        throw new AppError_1.default(403, "User is Blocked");
+    }
+    ///USer admin or not
+    const userIsAdmin = isUserExists === null || isUserExists === void 0 ? void 0 : isUserExists.role;
+    if (userIsAdmin !== "admin") {
+        throw new AppError_1.default(403, "Only Admin accessable");
+    }
     //Check Password is right or wrong
     // const isPasswordMatched = await bcrypt.compare(
     //   payload?.password,

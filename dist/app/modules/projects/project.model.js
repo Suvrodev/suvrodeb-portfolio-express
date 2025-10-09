@@ -12,10 +12,6 @@ const projectShema = new mongoose_1.Schema({
         type: String,
     },
     image: { type: String, required: [true, "Image URL is required"] },
-    descriptions: {
-        type: String,
-        required: [true, "Project description is required"],
-    },
 }, { timestamps: true, strict: "throw" } // This will make Mongoose throw an error for unknown fields
 );
 exports.ProjectModel = (0, mongoose_1.model)("project", projectShema);

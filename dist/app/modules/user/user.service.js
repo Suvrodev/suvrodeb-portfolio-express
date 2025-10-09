@@ -33,10 +33,7 @@ const getSingleUserFromDB = (email) => __awaiter(void 0, void 0, void 0, functio
 });
 const deleteUserFromDB = (email) => __awaiter(void 0, void 0, void 0, function* () {
     const existsRes = yield (0, checkNotExists_1.checkNotExists)(email);
-    const res = yield user_model_1.UserModel.findOneAndUpdate({ email: email }, { isDeleted: true }, {
-        new: true,
-        runValidators: true, //Model er role use korbe
-    });
+    const res = yield user_model_1.UserModel.findOneAndDelete({ email: email });
 });
 const updateUserFromDB = (email, userData) => __awaiter(void 0, void 0, void 0, function* () {
     const deleteOrNotExistsRes = yield (0, NotExistsOrDeleted_1.NotExistsOrDeleted)(email);
