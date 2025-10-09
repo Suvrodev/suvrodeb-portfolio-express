@@ -25,14 +25,27 @@ const userSchema = new Schema<TUser>(
       default: "user",
       required: true,
     },
+    deviceIp: {
+      type: String,
+      default: "Unknown",
+    },
+
     isDeleted: {
       type: Boolean,
       default: false,
     },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    passwordResetCode: {
+      type: String,
+      default: "st",
+    },
   },
   {
     timestamps: true,
-    strict: "throw",
+    // strict: "throw",
   }
 );
 

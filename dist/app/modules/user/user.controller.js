@@ -16,7 +16,12 @@ exports.UserControllers = void 0;
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const user_service_1 = require("./user.service");
 const registrationUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const userData = req.body;
+    const bodyData = req.body;
+    const ip = req.headers["x-forwarded-for"] ||
+        req.socket.remoteAddress ||
+        "Unknown";
+    console.log("IP--------:", ip);
+    const userData = Object.assign(Object.assign({}, bodyData), { deviceIp: Array.isArray(ip) ? ip[0] : ip });
     const result = yield user_service_1.UserServices.registrationUserIntoDB(userData);
     res.status(200).json({
         success: true,

@@ -3,8 +3,15 @@ import catchAsync from "../../utils/catchAsync";
 import { UserServices } from "./user.service";
 
 const registrationUser = catchAsync(async (req, res, next) => {
-  const userData = req.body;
+  const bodyData = req.body;
 
+  const ip =
+    (req.headers["x-forwarded-for"] as string) ||
+    req.socket.remoteAddress ||
+    "Unknown";
+
+  console.log("IP--------:", ip);
+  const userData = { ...bodyData, deviceIp: Array.isArray(ip) ? ip[0] : ip };
   const result = await UserServices.registrationUserIntoDB(userData);
 
   res.status(200).json({
