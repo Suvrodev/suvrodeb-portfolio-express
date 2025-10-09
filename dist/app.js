@@ -28,7 +28,11 @@ app.use((0, cookie_parser_1.default)());
 /**
  * Cors
  */
-const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://suvrodeb-portfolio-next.vercel.app",
+];
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
         console.log("Incoming origin:", origin);
@@ -48,7 +52,7 @@ app.use((0, cors_1.default)({
 app.use("/api", routes_1.default);
 app.get("/", (req, res) => {
     res.json({
-        message: `This back end is Listening is on port ${config_1.default.port}`,
+        message: `Suvrodeb Portfolio is Listening is on port ${config_1.default.port}`,
     });
 });
 /**

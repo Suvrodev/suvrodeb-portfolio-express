@@ -11,8 +11,9 @@ const registrationUserIntoDB = async (user: TUser) => {
   console.log("User in service reg: ", user);
 
   const userExistance = await checkExists(user.email);
-
+  console.log("Ejaga ki ashhe?");
   const res = await UserModel.create(user);
+  console.log("Reg res: ", res);
   return res;
 };
 

@@ -9,7 +9,7 @@ const registrationUser = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Registration Successfully",
+    message: "Registration Successfully",
     data: result,
   });
 });

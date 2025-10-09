@@ -19,10 +19,16 @@ const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const loginUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield auth_service_1.AuthServices.loginUser(req.body);
     const { refreshToken } = result;
-    res.cookie("_backEnd_refresh", refreshToken, {
+    res.cookie("sDevRef", refreshToken, {
         // secure: config.node_env === "production",
+        httpOnly: true, ///js diye access kora jabe na
+        // secure: config.node_env === "production" ? true : false, //secure: true দিলে cookie শুধুমাত্র HTTPS connection এ পাঠানো হবে। HTTP connection এ পাঠানো হবে না। lokalhost not allowed
+        // sameSite: config.node_env === "production" ? "none" : "lax", //none dile sob port e set hobe kintu secure true hote hobe, lax dile cors er, and strict dile same domain e
         secure: true,
-        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        // domain: config.node_env === "production" ? ".vercel.app" : "localhost",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(200).json({
         success: true,
@@ -38,7 +44,7 @@ const loginUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0
 const refreshToken = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     console.log("in cookies: ", req.cookies);
-    const result = yield auth_service_1.AuthServices.refreshToken((_a = req.cookies) === null || _a === void 0 ? void 0 : _a._backEnd_refresh);
+    const result = yield auth_service_1.AuthServices.refreshToken((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.sDevRef);
     res.status(200).json({
         success: true,
         message: "Generate Access token successfully",

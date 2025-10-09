@@ -17,7 +17,9 @@ const checkExists_1 = require("./userFunction/checkExists");
 const registrationUserIntoDB = (user) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("User in service reg: ", user);
     const userExistance = yield (0, checkExists_1.checkExists)(user.email);
+    console.log("Ejaga ki ashhe?");
     const res = yield user_model_1.UserModel.create(user);
+    console.log("Reg res: ", res);
     return res;
 });
 const getAllUserFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
