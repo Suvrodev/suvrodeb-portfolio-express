@@ -35,10 +35,10 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         throw new AppError_1.default(403, "User is Blocked");
     }
     ///USer admin or not
-    const userIsAdmin = isUserExists === null || isUserExists === void 0 ? void 0 : isUserExists.role;
-    if (userIsAdmin !== "admin") {
-        throw new AppError_1.default(403, "Only Admin accessable");
-    }
+    // const userIsAdmin = isUserExists?.role;
+    // if (userIsAdmin !== "admin") {
+    //   throw new AppError(403, "Only Admin accessable");
+    // }
     //Check Password is right or wrong
     // const isPasswordMatched = await bcrypt.compare(
     //   payload?.password,

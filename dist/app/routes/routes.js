@@ -6,6 +6,7 @@ const auth_route_1 = require("../modules/auth/auth.route");
 const project_route_1 = require("../modules/projects/project.route");
 const message_route_1 = require("../modules/Message/message.route");
 const resume_route_1 = require("../modules/resume/resume.route");
+const blog_route_1 = require("../modules/Blog/blog.route");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -19,6 +20,10 @@ const moduleRoutes = [
     {
         path: "/projects",
         route: project_route_1.projectsRoutes,
+    },
+    {
+        path: "/blog",
+        route: blog_route_1.blogRoutes,
     },
     {
         path: "/message",

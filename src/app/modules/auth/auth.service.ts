@@ -28,10 +28,10 @@ const loginUser = async (payload: TLoginUser) => {
   }
 
   ///USer admin or not
-  const userIsAdmin = isUserExists?.role;
-  if (userIsAdmin !== "admin") {
-    throw new AppError(403, "Only Admin accessable");
-  }
+  // const userIsAdmin = isUserExists?.role;
+  // if (userIsAdmin !== "admin") {
+  //   throw new AppError(403, "Only Admin accessable");
+  // }
 
   //Check Password is right or wrong
   // const isPasswordMatched = await bcrypt.compare(
