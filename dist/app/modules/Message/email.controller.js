@@ -8,76 +8,60 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessageControllers = void 0;
 const messageservice_1 = require("./messageservice");
+const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 //Create Message
-const createMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const message = req.body;
-        console.log("Come Message: ", message);
-        const result = yield messageservice_1.messageService.createEMessageIntoDB(message);
-        //Send Response
-        res.status(200).json({
-            message: "Email Sent successfully",
-            success: true,
-            data: result,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const createMessage = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const message = req.body;
+    console.log("Come Message: ", message);
+    const result = yield messageservice_1.messageService.createEMessageIntoDB(message);
+    //Send Response
+    res.status(200).json({
+        message: "Email Sent successfully",
+        success: true,
+        data: result,
+    });
+}));
 // Get All Message
-const getAllMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield messageservice_1.messageService.getAllMessageFromDB();
-        // Send response with the results
-        res.status(200).json({
-            message: "Email retrieved successfully",
-            status: true,
-            data: result,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const getAllMessage = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield messageservice_1.messageService.getAllMessageFromDB();
+    // Send response with the results
+    res.status(200).json({
+        message: "Email retrieved successfully",
+        status: true,
+        data: result,
+    });
+}));
 //Delete Message
-const deleteMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const messageId = req.params.id;
-        console.log("Message id: ", messageId);
-        const result = yield messageservice_1.messageService.deleteMessageFromDB(messageId);
-        //Send Response
-        res.status(200).json({
-            message: "Email deleted successfully",
-            status: true,
-            data: result,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const deleteMessage = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const messageId = req.params.id;
+    console.log("Message id: ", messageId);
+    const result = yield messageservice_1.messageService.deleteMessageFromDB(messageId);
+    //Send Response
+    res.status(200).json({
+        message: "Email deleted successfully",
+        status: true,
+        data: result,
+    });
+}));
 //Delete Email
-const updateMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const messageId = req.params.id;
-        const messageBody = req === null || req === void 0 ? void 0 : req.body;
-        console.log("Message id: ", messageId);
-        const result = yield messageservice_1.messageService.updateMessageFromDB(messageId, messageBody);
-        //Send Response
-        res.status(200).json({
-            message: "Email Updated successfully",
-            status: true,
-            data: result,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
-});
+const updateMessage = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const messageId = req.params.id;
+    const messageBody = req === null || req === void 0 ? void 0 : req.body;
+    console.log("Message id: ", messageId);
+    const result = yield messageservice_1.messageService.updateMessageFromDB(messageId, messageBody);
+    //Send Response
+    res.status(200).json({
+        message: "Email Updated successfully",
+        status: true,
+        data: result,
+    });
+}));
 exports.MessageControllers = {
     createMessage,
     getAllMessage,

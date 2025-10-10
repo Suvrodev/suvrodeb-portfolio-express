@@ -32,6 +32,7 @@ const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:3000",
     "https://suvrodeb-portfolio-next.vercel.app",
+    "https://suvrodeb.vercel.app",
 ];
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
