@@ -67,7 +67,7 @@ const updateBlog = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
     const result = yield blog_service_1.BlogServices.updateBlogFromDB(blogId, blogBody);
     //Send Response
     res.status(200).json({
-        message: "Blog updated successfully From Cart",
+        message: "Blog updated successfully",
         status: true,
         data: result,
     });

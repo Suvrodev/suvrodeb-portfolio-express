@@ -22,7 +22,9 @@ const notFound_1 = __importDefault(require("./app/middleware/notFound"));
 const routes_1 = __importDefault(require("./app/routes/routes"));
 const app = (0, express_1.default)();
 //Perser For req.body - json
-app.use(express_1.default.json());
+// app.use(express.json());
+//Set limit of mb
+app.use(express_1.default.json({ limit: "50mb" })); // ✅ এখানে 50MB limit দেওয়া হলো
 //cookie parser
 app.use((0, cookie_parser_1.default)());
 /**

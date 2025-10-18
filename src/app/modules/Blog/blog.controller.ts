@@ -62,7 +62,7 @@ const updateBlog: RequestHandler = catchAsync(async (req, res, next) => {
 
   //Send Response
   res.status(200).json({
-    message: "Blog updated successfully From Cart",
+    message: "Blog updated successfully",
     status: true,
     data: result,
   });

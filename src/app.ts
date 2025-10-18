@@ -16,7 +16,11 @@ import router from "./app/routes/routes";
 const app: Application = express();
 
 //Perser For req.body - json
-app.use(express.json());
+// app.use(express.json());
+
+//Set limit of mb
+app.use(express.json({ limit: "50mb" })); // ✅ এখানে 50MB limit দেওয়া হলো
+
 //cookie parser
 app.use(cookieParser());
 
